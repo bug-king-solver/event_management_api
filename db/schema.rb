@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_07_25_000825) do
-  create_table "events", force: :cascade do |t|
+  create_table "events", charset: "utf8mb3", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.integer "capacity"
@@ -19,10 +19,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_25_000825) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "participants", force: :cascade do |t|
+  create_table "participants", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.integer "event_id", null: false
+    t.bigint "event_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_participants_on_event_id"
