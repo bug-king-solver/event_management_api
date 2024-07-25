@@ -26,7 +26,7 @@ class ParticipantsController < ApplicationController
   
     def my_events
       @participant = Participant.find(params[:id])
-      render json: @participant.events
+      render json: @participant.event
     end
   
     private
