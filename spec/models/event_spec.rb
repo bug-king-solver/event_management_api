@@ -7,10 +7,26 @@ RSpec.describe Event, type: :model do
   end
 
   it "is invalid without a title" do
-    expect(build(:event, title: nil)).not_to be_valid
+    event = build(:event, title: nil)
+    expect(event).not_to be_valid
+    expect(event.errors[:title]).to include("can't be blank")
   end
 
   it "is invalid without a capacity" do
-    expect(build(:event, capacity: nil)).not_to be_valid
+    event = build(:event, capacity: nil)
+    expect(event).not_to be_valid
+    expect(event.errors[:capacity]).to include("can't be blank")
+  end
+
+  it "is invalid with a non-integer capacity" do
+    event = build(:event, capacity: "abc")
+    expect(event).not_to be_valid
+    expect(event.errors[:capacity]).to include("is not a number")
+  end
+
+  it "is invalid with a capacity less than or equal to zero" do
+    event = build(:event, capacity: 0)
+    expect(event).not_to be_valid
+    expect(event.errors[:capacity]).to include("must be greater than 0")
   end
 end

@@ -7,11 +7,21 @@ RSpec.describe Participant, type: :model do
   end
 
   it "is invalid without a name" do
-    expect(build(:participant, name: nil)).not_to be_valid
+    participant = build(:participant, name: nil)
+    expect(participant).not_to be_valid
+    expect(participant.errors[:name]).to include("can't be blank")
   end
 
   it "is invalid without an email" do
-    expect(build(:participant, email: nil)).not_to be_valid
+    participant = build(:participant, email: nil)
+    expect(participant).not_to be_valid
+    expect(participant.errors[:email]).to include("can't be blank")
+  end
+
+  it "is invalid with a malformed email" do
+    participant = build(:participant, email: "invalid_email")
+    expect(participant).not_to be_valid
+    expect(participant.errors[:email]).to include("is invalid")
   end
 
   it "is associated with an event" do
