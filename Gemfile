@@ -9,6 +9,9 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.4"
 gem "sprockets-rails"
 
 gem 'mysql2'
+gem 'rspec-rails'
+gem 'factory_bot_rails'
+gem 'faker'
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
